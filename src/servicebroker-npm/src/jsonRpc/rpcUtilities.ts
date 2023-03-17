@@ -55,7 +55,7 @@ function filterOutboundMarshalableObject(connection: MessageConnection, value: a
 	}
 }
 
-function validateNoUndefinedElements<T>(values: T[]): T[] {
+export function validateNoUndefinedElements<T>(values: T[]): T[] {
 	for (let i = 0; i < values.length; i++) {
 		if (values[i] === undefined) {
 			throw new Error(`Argument at 0-based index ${i} is set as undefined, which is not a valid JSON value.`)

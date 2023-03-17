@@ -10,7 +10,7 @@ import * as msgpack from 'msgpack-lite'
 import { MultiplexingStream, MultiplexingStreamOptions } from 'nerdbank-streams'
 import { EventEmitter } from 'stream'
 import { NodeStreamMessageReader, NodeStreamMessageWriter } from './NodeStreamMessageWrappers'
-import { invokeRpc, registerInstanceMethodsAsRpcTargets } from './jsonRpc/rpcUtilities'
+import { invokeRpc, registerInstanceMethodsAsRpcTargets, validateNoUndefinedElements } from './jsonRpc/rpcUtilities'
 
 /**
  * Constructs a JSON RPC message connection to a service
@@ -212,7 +212,8 @@ export class JsonRpcConnection extends RpcConnection {
 		if (RpcConnection.IsRpcEventServer(rpcTarget)) {
 			for (let eventName of rpcTarget.rpcEventNames) {
 				rpcTarget.on(eventName, (...args) => {
-					this.messageConnection.sendNotification(eventName, ParameterStructures.byPosition, ...args)
+					const validatedArgs = validateNoUndefinedElements(Array.prototype.slice.call(args))
+					this.messageConnection.sendNotification(eventName, ParameterStructures.byPosition, ...validatedArgs)
 				})
 			}
 		}
