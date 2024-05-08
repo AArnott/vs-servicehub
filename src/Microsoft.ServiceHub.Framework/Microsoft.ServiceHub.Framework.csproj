@@ -12,8 +12,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Windows.CsWin32" PrivateAssets="all" />
     <PackageReference Include="StreamJsonRpc" />
-    <PackageReference Include="System.Collections.Immutable" />
-    <PackageReference Include="System.Text.Json" />
+    <PackageReference Include="System.Collections.Immutable" Condition="'$(TargetFrameworkIdentifier)'!='NETCoreApp'" />
+    <PackageReference Include="System.Text.Json" Condition="'$(TargetFrameworkIdentifier)'!='NETCoreApp'" />
     <PackageReference Include="TraceSource.ActivityTracing" PrivateAssets="all" />
   </ItemGroup>
 

@@ -32,9 +32,9 @@
     <PackageVersion Include="Nerdbank.Streams" Version="2.10.69" />
     <PackageVersion Include="NuGet.Protocol" Version="6.8.0" />
     <PackageVersion Include="StreamJsonRpc" Version="2.16.41" />
-    <PackageVersion Include="System.Collections.Immutable" Version="7.0.0" />
+    <PackageVersion Include="System.Collections.Immutable" Version="6.0.0" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
-    <PackageVersion Include="System.Text.Json" Version="7.0.3" />
+    <PackageVersion Include="System.Text.Json" Version="6.0.0" />
     <PackageVersion Include="TraceSource.ActivityTracing" Version="0.1.201-beta" />
     <PackageVersion Include="Xunit.Combinatorial" Version="1.6.24" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.0" />
@@ -46,6 +46,10 @@
     <PackageVersion Update="Microsoft.CodeAnalysis" Version="$(CodeAnalysisVersionForAnalyzers)" />
     <PackageVersion Update="Microsoft.CodeAnalysis.CSharp" Version="$(CodeAnalysisVersionForAnalyzers)" />
     <PackageVersion Update="System.Collections.Immutable" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(IsTestProject)'=='true'">
+    <PackageVersion Update="System.Collections.Immutable" Version="7.0.0" />
+    <PackageVersion Update="System.Text.Json" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <GlobalPackageReference Include="CSharpIsNullAnalyzer" Version="0.1.495" />
